@@ -1,0 +1,26 @@
+data_list: /config_files/rdkit_data.yaml
+drugs_idx: 0
+non_drugs_idx: 1
+#===================
+loader_config:
+   non_zero_idx: /home/wbeker/projects/lingwistyka/siec/rdkit_opt.npz
+   data_mu : /home/wbeker/projects/lingwistyka/siec/mean_rdkit_opt.npz
+   data_std: /home/wbeker/projects/lingwistyka/siec/std_rdkit_opt.npz
+   data_balance: weights  #choices: cut, random, weights
+#=================   
+model_params:
+   kind: rdkit_ae
+   num_inputs: 1
+   encoder_init_weights: data/ecoder_rdkit_opt_weights.pkz
+   encoder_hidden_units: 90
+   encoder_num_layers: 1
+   encoder_hidden_activation: relu
+   model_dropout: 0.2
+   model_l2: 0.001
+   metric_balance: False 
+   dropout_flag: False
+#===============
+cross_validation:
+   test_split: 0.1
+   validation_split: 0.2
+   random_state: 123
