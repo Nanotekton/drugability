@@ -5,7 +5,7 @@ by Wiktor Beker, Agnieszka Wołos and Bartosz A. Grzybowski.
 
 ## Prerequisites
 
-Before start, please make sure to have installed following packages (version used in this particular project indicatedin parentheses):
+Before start, please make sure to have installed following packages (version used in this particular project indicated in parentheses):
 
 * [RdKit](http://www.rdkit.org/) (version  2017.09.1)
 * [Keras](https://keras.io/) (version 2.2.4 with TensorFlow backend)
@@ -22,7 +22,9 @@ Under construction
 ### Configuration file
 
 ## Examples
+```
 Under construction
+```
 ### Sample perceptrons
 ### PU-learning example
 ### Multi-task learning example
