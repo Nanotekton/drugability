@@ -6,7 +6,7 @@ parser.add_argument('--mol2vec_model_pkl', type=str, default=None)
 parser.add_argument('input', type=str)
 args=parser.parse_args()
 
-assert not (args.descriptor=='mol2vec' and (args.mol2vec_model_pkl is None)),
+assert not (args.descriptor=='mol2vec' and (args.mol2vec_model_pkl is None)),\
  'With Mol2Vec, you should supply pickle with trained Mol2Vec model (see Mol2Vec docs)'
 
 from rdkit import Chem
