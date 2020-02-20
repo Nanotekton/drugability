@@ -1,0 +1,33 @@
+loader_config:
+   positive_data_file: data/drugs_approved.smiles
+   negative_data_files:
+      - data/zinc15_nondrugs_sample.smiles
+   data_balance: random  #choices: cut, random, weights
+#===============
+model_params:
+   kind: gcnn
+   num_inputs: 5
+   recurrent: False
+   hidden_units: 128
+   dropout: 0.22538598591315584
+   lr: 0.001
+   l2: 0.001
+   num_layers: 4
+   activation: relu
+   dropout_flag: False
+#===============
+vectorization_config:
+   use_bond_orders: False
+   use_formal_charge: False
+   add_connections_to_aromatic_rings: False
+   use_Gasteiger: True
+   use_mi: True
+#===============
+graph_filters:
+   filter_type: first_order
+   adjacency_normalization: True
+#===============
+cross_validation:
+   test_split: 0.1
+   validation_split: 0.2
+   random_state: 123

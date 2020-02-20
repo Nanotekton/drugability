@@ -1,0 +1,28 @@
+loader_config:
+   kind: morgan
+   output_shape: 2
+   positive_data_file: data/drugs_approved.smiles
+   negative_data_files:
+      - data/zinc15_nondrugs_sample.smiles
+   data_balance: random  #choices: cut, random, weights
+#===============
+model_params:
+   kind: rdkit_ae
+   num_inputs: 1
+   hidden_units: 60
+   layers: 1
+   encoder_hidden_activation: relu
+   model_dropout: 0.2
+   model_l2: 0.001
+   metric_balance: False
+   dropout_flag: False
+#===============
+vectorizer_config:
+   radius: 2
+   nbits: 2048
+   use_features: False
+#===============
+cross_validation:
+   test_split: 0.1
+   validation_split: 0.2
+   random_state: 123
