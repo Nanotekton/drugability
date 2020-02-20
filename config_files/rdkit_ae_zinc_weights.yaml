@@ -5,7 +5,7 @@ loader_config:
    non_zero_idx: data/zinc15_nondrugs_sample_rdkit_idx.npz
    data_mu : data/zinc15_nondrugs_sample_rdkit_mu.npz
    data_std: data/zinc15_nondrugs_sample_rdkit_std.npz
-   data_balance: random  #choices: cut, random, weights
+   data_balance: weights  #choices: cut, random, weights
 #=================   
 model_params:
    kind: rdkit_ae

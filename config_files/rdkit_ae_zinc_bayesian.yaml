@@ -1,12 +1,11 @@
-data_list: /config_files/rdkit_data.yaml
-drugs_idx: 0
-non_drugs_idx: 1
 #===================
 loader_config:
-   non_zero_idx: /home/wbeker/projects/lingwistyka/siec/rdkit_opt.npz
-   data_mu : /home/wbeker/projects/lingwistyka/siec/mean_rdkit_opt.npz
-   data_std: /home/wbeker/projects/lingwistyka/siec/std_rdkit_opt.npz
-   data_balance: weights  #choices: cut, random, weights
+   negative_file: data/zinc15_nondrugs_sample_rdkit.npz
+   positive_file: data/drugs_approved_rdkit.npz
+   non_zero_idx: data/zinc15_nondrugs_sample_rdkit_idx.npz
+   data_mu : data/zinc15_nondrugs_sample_rdkit_mu.npz
+   data_std: data/zinc15_nondrugs_sample_rdkit_std.npz
+   data_balance: random  #choices: cut, random, weights
 #=================   
 model_params:
    kind: rdkit_ae
@@ -17,7 +16,7 @@ model_params:
    model_dropout: 0.2
    model_l2: 0.001
    metric_balance: False 
-   dropout_flag: False
+   dropout_flag: True
 #===============
 cross_validation:
    test_split: 0.1

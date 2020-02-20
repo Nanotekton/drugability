@@ -33,6 +33,10 @@ In ```loader_config```, position ```data_balance``` controls data balancing:
 * ```cut``` selects first part of the majority class (of the same size as the minority class).
 
 ## Examples
+It is assumed to work in this directory. Create directory for experiment data.
+```
+mkdir experiments
+```
 ### RdKit and Mol2Vec vectorization
 
 For RdKit and Mol2Vec representations, the data has to be vectorized first (the names used below correspond to paths included in the config files).
@@ -43,16 +47,43 @@ python scripts/vectorize.py --output_core data/drugs_approved_m2v --descriptor m
 python scripts/vectorize.py --output_core data/zinc15_nondrugs_sample_rdkit --descriptor rdkit  data/zinc15_nondrugs_sample.smiles
 python scripts/vectorize.py --output_core data/zinc15_nondrugs_sample_m2v --descriptor mol2vec --mol2vec_model_pkl MOL2VEC_MODEL_PKL  data/zinc15_nondrugs_sample.smiles
 ```
+
+Generated files ```*mu.npz, *std.npz``` and ```*idx.npz``` contains data for normalization step (mean, standard deviation and non-zero indices in the original vector, respectively). 
+Note that in the paper those values were calculated for combined drug+nondrug dataset. Here, for the sake of clarity, we put ```zinc_nondrugs``` normalization parameters as an example.
+
 ### Sample perceptrons
-#### RdKit
+#### RdKit with 5-fold cross-validation
 ```
+python make_experiment.py --config config_files/rdkit_ae_zinc.yaml --validation_mode 5cv_test --output_core experiments/rdkit_ae_zinc
+```
+#### Bayesian NN on RdKit with 5-fold cross-validation
+```
+python make_experiment.py --config config_files/rdkit_ae_zinc_bayesian.yaml --validation_mode 5cv_test --output_core experiments/rdkit_ae_zinc_bayesian
 ```
 ### PU-learning example
+```
+python pu_fuselier.py --output_core experiments/fuselier_zinc_rdkit --config config_files/rdkit_ae_zinc_weights.yaml 
+python pu_iteration.py --output_core experiments/liu_zinc_rdkit --config config_files/rdkit_ae_zinc_weights.yaml 
+```
 ### Multi-task learning example
+Vectorize clintox:
+```
+python scripts/extract_labels_from_csv.py --output data/clintox_labels.npz --output_smiles data/clintox.smiles --input data/clintox_cleaned.csv
+python scripts/vectorize.py --output_core data/clintox_m2v --descriptor mol2vec --mol2vec_model_pkl MOL2VEC_MODEL_PKL  data/clintox.smiles
+```
+Run experiment
+```
+python make_experiment.py --config config_files/clintox_multitask.py --validation_mode 5cv_test --output_core experiments/clintox_mutlitask
+```
 ### Balanced Random Forest example 
+Assuming clintox is vectorized (as above).
+```
+python scripts/simple_rf.py --labels data/clintox_labels.npz --vectors data/clintox_m2v.npz --names data/clintox_cleaned.csv --brf
+```
 
 ## Closing remarks
 This repository was created as a part of scientific research rather than a standalone project. Due to tight schedule, it's quite 'sketchy'. I hope that with incoming projects I manage to transform it into a flexible framework for ML experiments with a possibility to have a lower-level control over each step (eg. user-defined splitting of the data). 
 
 ### ToDo
+* test whether examples work correctly (ASAP)
 * unify Keras and Sklearn APIs in ```make_experiment.py```

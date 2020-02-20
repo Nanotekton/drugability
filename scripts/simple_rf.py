@@ -6,7 +6,7 @@ parser.add_argument('--labels', type=str, help= 'array of class labels. NAN or -
 parser.add_argument('--vectors', type=str, help='array of vectors representing molecules')
 parser.add_argument('--names', type=str, help='Original CSV file, column names are taken from it.' )
 parser.add_argument('--save', type=str, default=None)
-parser.add_argument('--brf', action='store_true', 'toggles Balanced Random Forest on')
+parser.add_argument('--brf', action='store_true', help='toggles Balanced Random Forest on')
 
 args=parser.parse_args()
 
