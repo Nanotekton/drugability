@@ -10,7 +10,8 @@ from keras_dgl.layers import MultiGraphCNN, MultiGraphAttentionCNN, GraphConvLST
 from data_preprocess import isfile, gz_unpickle, np
 from balance import balanced_accuracy, balanced_categorical_accuracy
 from sklearn.metrics import balanced_accuracy_score, accuracy_score, roc_auc_score
-from myutils.graph_compression import tf_bnd_to_adj, tf
+#from myutils.graph_compression import tf_bnd_to_adj, tf
+import tensorflow as tf
 balanced_metrics = {'balanced_accuracy':balanced_accuracy, 'balanced_categorical_accuracy':balanced_categorical_accuracy}
 balanced_metrics['balanced_acc'] = balanced_metrics['balanced_accuracy']
 

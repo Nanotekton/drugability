@@ -57,7 +57,7 @@ def smiles2sentence(smiles):
 beg=time.time()
 
 #load smiles from smiles file
-with open(args.inp, 'r') as f:
+with open(args.input, 'r') as f:
    smiles_list=f.readlines()
 
 if args.descriptor=='mol2vec':
