@@ -1,6 +1,6 @@
 # Drugability - Machine Learning Study
 
-Here we deposit the code associated with the article *Advantages and limitations of Artificial Intelligence in defining general drug-likeness*
+Here we deposit the code associated with the article *Minimal-uncertainty prediction of general drug-likeness based on Bayesian neural networks*
 by Wiktor Beker, Agnieszka Wołos and Bartosz A. Grzybowski.
 
 ## Prerequisites
