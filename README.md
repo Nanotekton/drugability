@@ -73,7 +73,7 @@ python scripts/vectorize.py --output_core data/clintox_m2v --descriptor mol2vec 
 ```
 Run experiment
 ```
-python make_experiment.py --config config_files/clintox_multitask.py --validation_mode 5cv_test --output_core experiments/clintox_mutlitask
+python make_experiment.py --config config_files/clintox_multitask.yaml --validation_mode 5cv_test --output_core experiments/clintox_mutlitask
 ```
 ### Balanced Random Forest example 
 Assuming clintox is vectorized (as above).
