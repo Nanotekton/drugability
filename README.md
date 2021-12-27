@@ -40,12 +40,13 @@ mkdir experiments
 ### RdKit and Mol2Vec vectorization
 
 For RdKit and Mol2Vec representations, the data has to be vectorized first (the names used below correspond to paths included in the config files).
-Note that with Mol2Vec, you should provide path to pickle with Mol2Vec model (not included in the repo).
+Note that with Mol2Vec, you should provide path to pickle with Mol2Vec model. An example obtained according to the [instruction](https://mol2vec.readthedocs.io) (trained with ~20M compounds from ZINC and parameters: radius 1, UNK to replace all identifiers that appear less than 4 times, skip-gram and window size of 10 and resulting in 300 dimensional embeddings) is present in `models/model_300dim.pkl`.
+
 ```
 python scripts/vectorize.py --output_core data/drugs_approved_rdkit --descriptor rdkit  data/drugs_approved.smiles
-python scripts/vectorize.py --output_core data/drugs_approved_m2v --descriptor mol2vec --mol2vec_model_pkl MOL2VEC_MODEL_PKL  data/drugs_approved.smiles
+python scripts/vectorize.py --output_core data/drugs_approved_m2v --descriptor mol2vec --mol2vec_model_pkl models/model_300dim.pkl  data/drugs_approved.smiles
 python scripts/vectorize.py --output_core data/zinc15_nondrugs_sample_rdkit --descriptor rdkit  data/zinc15_nondrugs_sample.smiles
-python scripts/vectorize.py --output_core data/zinc15_nondrugs_sample_m2v --descriptor mol2vec --mol2vec_model_pkl MOL2VEC_MODEL_PKL  data/zinc15_nondrugs_sample.smiles
+python scripts/vectorize.py --output_core data/zinc15_nondrugs_sample_m2v --descriptor mol2vec --mol2vec_model_pkl models/model_300dim.pkl  data/zinc15_nondrugs_sample.smiles
 ```
 
 Generated files ```*mu.npz, *std.npz``` and ```*idx.npz``` contains data for normalization step (mean, standard deviation and non-zero indices in the original vector, respectively). 
